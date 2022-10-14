@@ -39,7 +39,7 @@ public class ResponseHelper {
         );
   }
 
-  public <T> ResponseEntity<ResponseTemplate<ResponseCollection<T>>> createResponseCollection(
+  public <T> ResponseEntity<ResponseTemplate<ResponseList<T>>> createResponseCollection(
       ResponseEnum responseEnum, Page page,
       List<T> contents) {
     return ResponseEntity.status(responseEnum.getHttpStatus())
