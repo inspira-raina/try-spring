@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @Table(name = "project_headers")
 public class ViewProject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
