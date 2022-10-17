@@ -3,19 +3,18 @@ package org.ait.project.template.modules.project.dto.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.ait.project.template.modules.client.dto.response.ClientResponse;
-
 import java.time.ZonedDateTime;
 
 @Data
 public class ProjectResponse {
     @JsonProperty("id")
-    private  Integer id;
+    private Integer id;
 
     @JsonProperty("title")
     private String title;
 
-    @JsonProperty("client")
-    private ClientResponse client;
+    @JsonProperty("client_detail")
+    private ClientResponse clientResponse;
 
     @JsonProperty("description")
     private String Description;

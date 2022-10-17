@@ -30,17 +30,17 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ResponseEntity<ResponseTemplate<ResponseDetail<ClientResponse>>> create(ClientRequest clientRequest) {
         Client client = clientDelegate.create(clientMapper.toClientRequest(clientRequest));
-        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, clientMapper.toClientResponse(client));
+        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, clientMapper.mapToClient(client));
     }
 
     @Override
     public ResponseEntity<ResponseTemplate<ResponseList<ClientResponse>>> getAll() {
         List<Client> clientList = clientDelegate.getAll();
-        return  responseHelper.createResponseCollection(ResponseEnum.SUCCESS, null, clientMapper.toClientsResponse(clientList));
+        return  responseHelper.createResponseCollection(ResponseEnum.SUCCESS, null, clientMapper.mapToClientList(clientList));
     }
 
     @Override
     public ResponseEntity<ResponseTemplate<ResponseDetail<ClientResponse>>> getById(Integer id) {
-        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, clientMapper.toClientResponse(clientDelegate.getById(id)));
+        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, clientMapper.mapToClient(clientDelegate.getById(id)));
     }
 }

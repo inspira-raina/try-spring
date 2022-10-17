@@ -2,6 +2,7 @@ package org.ait.project.template.modules.client.controller;
 
 import lombok.AllArgsConstructor;
 
+import lombok.RequiredArgsConstructor;
 import org.ait.project.template.modules.client.dto.request.ClientRequest;
 import org.ait.project.template.modules.client.dto.response.ClientResponse;
 import org.ait.project.template.modules.client.service.internal.ClientService;
@@ -15,21 +16,24 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
-public class ClientController {
+@RequiredArgsConstructor
+public class ClientController implements ClientService{
 
     private final ClientService clientService;
 
+    @Override
     @GetMapping("/clients")
     public ResponseEntity<ResponseTemplate<ResponseList<ClientResponse>>> getAll() {
         return clientService.getAll();
     }
 
+    @Override
     @GetMapping("/client/{id}")
     public  ResponseEntity<ResponseTemplate<ResponseDetail<ClientResponse>>> getById(@PathVariable Integer id) {
         return clientService.getById(id);
     }
 
+    @Override
     @PostMapping("/client")
     public ResponseEntity<ResponseTemplate<ResponseDetail<ClientResponse>>> create(@RequestBody ClientRequest clientRequest) {
         System.out.println(clientRequest);

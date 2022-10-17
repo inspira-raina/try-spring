@@ -30,17 +30,17 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ResponseEntity<ResponseTemplate<ResponseDetail<ProjectResponse>>> addProject(ProjectRequest projectRequest) {
         Project project = projectDelegate.saveProject(projectMapper.toProjectRequest(projectRequest));
-        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, projectMapper.toProjectResponse(project));
+        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, projectMapper.mapToProject(project));
     }
 
     @Override
     public ResponseEntity<ResponseTemplate<ResponseDetail<ProjectResponse>>> getProjectById(Integer id) {
-        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, projectMapper.toProjectResponse(projectDelegate.getProjectById(id)));
+        return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, projectMapper.mapToProject(projectDelegate.getProjectById(id)));
     }
 
     @Override
     public ResponseEntity<ResponseTemplate<ResponseList<ProjectResponse>>> getAllProjects() {
         List<Project> projectList = projectDelegate.getProjects();
-        return  responseHelper.createResponseCollection(ResponseEnum.SUCCESS, null, projectMapper.toProjectsResponse(projectList));
+        return  responseHelper.createResponseCollection(ResponseEnum.SUCCESS, null, projectMapper.mapToProjectList(projectList));
     }
 }
