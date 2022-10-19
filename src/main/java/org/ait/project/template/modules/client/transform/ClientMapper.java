@@ -2,6 +2,7 @@ package org.ait.project.template.modules.client.transform;
 
 
 import org.ait.project.template.modules.client.dto.request.ClientRequest;
+import org.ait.project.template.modules.client.dto.response.ClientProjectResponse;
 import org.ait.project.template.modules.client.dto.response.ClientResponse;
 import org.ait.project.template.modules.client.model.entity.Client;
 import org.ait.project.template.modules.project.dto.request.ProjectRequest;
@@ -20,6 +21,8 @@ public interface ClientMapper {
 
     @IterableMapping(qualifiedByName = "mapToClient")
     List<ClientResponse> mapToClientList(List<Client> clientList);
+
+    List<ClientProjectResponse> clientProjectList(List<Project> projectList);
 
     Client toClientRequest(ClientRequest clientRequest);
 }

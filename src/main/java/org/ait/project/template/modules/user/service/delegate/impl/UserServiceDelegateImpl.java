@@ -17,7 +17,7 @@ public class UserServiceDelegateImpl implements UserServiceDelegate {
 
     @Override
     public User saveUser(User user) {
-        user.setCreatedAt(ZonedDateTime.now());
+//        user.setCreatedAt(ZonedDateTime.now());
         return userRepository.save(user);
     }
 
@@ -37,7 +37,7 @@ public class UserServiceDelegateImpl implements UserServiceDelegate {
         user.setName(user.getName());
         user.setEmail(user.getEmail());
         user.setPhoneNumber(user.getPhoneNumber());
-        user.setUpdatedAt(ZonedDateTime.now());
+//        user.setUpdatedAt(ZonedDateTime.now());
         return userRepository.save(user);
     }
 }

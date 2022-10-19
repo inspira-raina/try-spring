@@ -2,11 +2,15 @@ package org.ait.project.template.modules.client.service.internal.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.ait.project.template.modules.client.dto.request.ClientRequest;
+import org.ait.project.template.modules.client.dto.response.ClientProjectResponse;
 import org.ait.project.template.modules.client.dto.response.ClientResponse;
 import org.ait.project.template.modules.client.model.entity.Client;
 import org.ait.project.template.modules.client.service.delegate.ClientServiceDelegate;
 import org.ait.project.template.modules.client.service.internal.ClientService;
 import org.ait.project.template.modules.client.transform.ClientMapper;
+import org.ait.project.template.modules.project.dto.response.ProjectResponse;
+import org.ait.project.template.modules.project.model.entity.Project;
+import org.ait.project.template.modules.project.transform.ProjectMapper;
 import org.ait.project.template.shared.enums.ResponseEnum;
 import org.ait.project.template.shared.template.ResponseDetail;
 import org.ait.project.template.shared.template.ResponseList;
@@ -27,6 +31,8 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientMapper clientMapper;
 
+    private final ProjectMapper projectMapper;
+
     @Override
     public ResponseEntity<ResponseTemplate<ResponseDetail<ClientResponse>>> create(ClientRequest clientRequest) {
         Client client = clientDelegate.create(clientMapper.toClientRequest(clientRequest));
@@ -42,5 +48,11 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ResponseEntity<ResponseTemplate<ResponseDetail<ClientResponse>>> getById(Integer id) {
         return responseHelper.createResponseDetail(ResponseEnum.SUCCESS, clientMapper.mapToClient(clientDelegate.getById(id)));
+    }
+
+    @Override
+    public ResponseEntity<ResponseTemplate<ResponseList<ClientProjectResponse>>> getProjectsByClientId(Integer id) {
+        List<Project> projectList = clientDelegate.getProjectsByClientId(id);
+        return responseHelper.createResponseCollection(ResponseEnum.SUCCESS, null, clientMapper.clientProjectList(projectList));
     }
 }

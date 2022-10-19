@@ -24,10 +24,4 @@ public class ClientResponse {
 
     @JsonProperty("pic_phone")
     private String picPhone;
-
-    @JsonProperty("created_at")
-    private ZonedDateTime createdAt;
-
-    @JsonProperty("updated_at")
-    private ZonedDateTime updatedAt;
 }
